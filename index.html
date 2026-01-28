@@ -1,126 +1,278 @@
 <!DOCTYPE html>
 <html lang="my">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decentralized Shop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
-        body { font-family: 'Padauk', sans-serif; background: #010409; color: #f0f6fc; }
-        .glass-card { background: #0d1117; border: 1px solid #30363d; border-radius: 1.2rem; margin-bottom: 1.5rem; overflow: hidden; }
-        .price-row { display: flex; justify-content: space-between; padding: 10px 15px; border-bottom: 1px solid rgba(48, 54, 61, 0.5); }
-        .price-row:last-child { border-bottom: none; }
-        .section-tag { background: #238636; color: white; padding: 4px 12px; border-radius: 0 0 10px 0; font-size: 10px; font-weight: bold; text-transform: uppercase; }
-        .header-title { border-left: 5px solid #3b82f6; padding-left: 15px; margin: 30px 0 15px 0; font-weight: 700; color: #3b82f6; }
-        .bullet-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #8b949e; padding: 5px 0; }
-    </style>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Decentralized Shop | Premium Digital Services</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+     <style>
+          @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Inter:wght@400;700;900&display=swap');
+
+          :root {
+               --bg-dark: #010409;
+               --card-bg: #0d1117;
+               --border-color: #30363d;
+               --accent-blue: #3b82f6;
+          }
+
+          body {
+               font-family: 'Padauk', 'Inter', sans-serif;
+               background: radial-gradient(circle at top right, #161b22, #010409);
+               color: #f0f6fc;
+               overflow-x: hidden;
+          }
+
+          .glass-card {
+               background: rgba(13, 17, 23, 0.8);
+               backdrop-filter: blur(10px);
+               border: 1px solid var(--border-color);
+               border-radius: 1.5rem;
+               margin-bottom: 1.5rem;
+               overflow: hidden;
+               transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .glass-card:hover {
+               transform: translateY(-5px);
+               border-color: #484f58;
+               box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          }
+
+          .price-row {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               padding: 12px 20px;
+               border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+               transition: background 0.2s;
+          }
+
+          .price-row:hover {
+               background: rgba(59, 130, 246, 0.05);
+          }
+
+          .price-row:last-child {
+               border-bottom: none;
+          }
+
+          .section-tag {
+               display: inline-block;
+               padding: 6px 16px;
+               border-radius: 0 0 12px 0;
+               font-size: 11px;
+               font-weight: 800;
+               text-transform: uppercase;
+               letter-spacing: 1px;
+          }
+
+          .header-title {
+               position: relative;
+               padding-left: 20px;
+               margin: 40px 0 20px 0;
+               font-weight: 900;
+               font-size: 1.25rem;
+               display: flex;
+               align-items: center;
+          }
+
+          .header-title::before {
+               content: '';
+               position: absolute;
+               left: 0;
+               height: 100%;
+               width: 4px;
+               border-radius: 10px;
+               background: currentColor;
+               box-shadow: 0 0 15px currentColor;
+          }
+
+          .bullet-item {
+               display: flex;
+               align-items: flex-start;
+               gap: 12px;
+               font-size: 14px;
+               color: #c9d1d9;
+               padding: 8px 0;
+          }
+
+          @keyframes float {
+               0% { transform: translateY(0px); }
+               50% { transform: translateY(-10px); }
+               100% { transform: translateY(0px); }
+          }
+
+          .float-logo {
+               animation: float 3s ease-in-out infinite;
+          }
+
+          @keyframes pulse-blue {
+               0% { box-shadow: 0 0 0 0 rgba(34, 158, 217, 0.7); }
+               70% { box-shadow: 0 0 0 15px rgba(34, 158, 217, 0); }
+               100% { box-shadow: 0 0 0 0 rgba(34, 158, 217, 0); }
+          }
+
+          .tg-btn {
+               animation: pulse-blue 2s infinite;
+          }
+
+          .ks-tag {
+               font-family: 'Inter', sans-serif;
+               background: rgba(255, 255, 255, 0.05);
+               padding: 2px 8px;
+               border-radius: 6px;
+          }
+     </style>
 </head>
-<body class="pb-40 px-4">
 
-    <header class="text-center py-10">
-        <img src="https://i.ibb.co/RktMBtTf/image.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-blue-500 shadow-2xl object-cover">
-        <h1 class="text-3xl font-black italic tracking-tighter">DECENTRALIZED <span class="text-blue-500">SHOP</span></h1>
-        <p class="text-gray-500 text-[10px] tracking-[0.3em] font-bold uppercase mt-2">Premium Digital Services</p>
-    </header>
+<body class="pb-32 px-4 md:max-w-2xl md:mx-auto">
 
-    <h2 class="header-title">MOBILE LEGENDS (MLBB)</h2>
-    <div class="glass-card">
-        <div class="section-tag bg-blue-600">Passes & Special</div>
-        <div class="price-row"><span>Weekly Diamond Pass</span> <span class="font-bold text-blue-400">6,000 ks</span></div>
-        <div class="price-row"><span>Twilight Pass</span> <span class="font-bold text-blue-400">38,000 ks</span></div>
-    </div>
+     <header class="text-center py-12" data-aos="fade-down">
+          <div class="relative inline-block">
+               <img src="https://i.ibb.co/b52ctWXK/image.jpg"
+                    class="w-28 h-28 rounded-full mx-auto mb-6 border-4 border-blue-500/30 shadow-2xl object-cover float-logo"
+                    alt="Decentralized Shop Logo">
+               <div class="absolute -bottom-2 -right-2 bg-blue-500 rounded-full p-2 shadow-lg">
+                    <i class="fa-solid fa-check text-white text-xs"></i>
+               </div>
+          </div>
+          <h1 class="text-4xl font-black italic tracking-tighter">DECENTRALIZED <span class="text-blue-500">SHOP</span>
+          </h1>
+          <div class="flex items-center justify-center gap-2 mt-3">
+               <span class="h-[1px] w-8 bg-gray-700"></span>
+               <p class="text-gray-500 text-[10px] tracking-[0.4em] font-bold uppercase">Premium Digital Services</p>
+               <span class="h-[1px] w-8 bg-gray-700"></span>
+          </div>
+     </header>
 
-    <div class="glass-card">
-        <div class="section-tag bg-indigo-600">Dia 2ဆ Price</div>
-        <div class="price-row"><span>50 (+50 Bonus)</span> <span class="font-bold text-indigo-400">3,500 ks</span></div>
-        <div class="price-row"><span>150 (+150 Bonus)</span> <span class="font-bold text-indigo-400">10,000 ks</span></div>
-        <div class="price-row"><span>250 (+250 Bonus)</span> <span class="font-bold text-indigo-400">17,000 ks</span></div>
-        <div class="price-row"><span>500 (+500 Bonus)</span> <span class="font-bold text-indigo-400">33,000 ks</span></div>
-    </div>
+     <div data-aos="fade-up">
+          <h2 class="header-title" style="color: #3b82f6;">MOBILE LEGENDS (MLBB)</h2>
+          
+          <div class="glass-card">
+               <div class="section-tag bg-blue-600">Passes & Special</div>
+               <div class="price-row"><span>💎 Weekly Diamond Pass</span> <span class="font-bold text-blue-400 ks-tag">6,000 ks</span></div>
+               <div class="price-row"><span>🤩 Twilight Pass</span> <span class="font-bold text-blue-400 ks-tag">38,000 ks</span></div>
+          </div>
 
-    <div class="glass-card">
-        <div class="section-tag">Diamond စျေးများ</div>
-        <div class="price-row"><span>86 Diamonds</span> <span class="font-bold">5,300 ks</span></div>
-        <div class="price-row"><span>172 Diamonds</span> <span class="font-bold">11,700 ks</span></div>
-        <div class="price-row"><span>257 Diamonds</span> <span class="font-bold">15,900 ks</span></div>
-        <div class="price-row"><span>343 Diamonds</span> <span class="font-bold">22,000 ks</span></div>
-        <div class="price-row"><span>429 Diamonds</span> <span class="font-bold">25,000 ks</span></div>
-        <div class="price-row"><span>514 Diamonds</span> <span class="font-bold">31,000 ks</span></div>
-        <div class="price-row"><span>706 Diamonds</span> <span class="font-bold">40,000 ks</span></div>
-        <div class="price-row"><span>1049 Diamonds</span> <span class="font-bold">60,000 ks</span></div>
-        <div class="price-row"><span>2195 Diamonds</span> <span class="font-bold">126,000 ks</span></div>
-        <div class="price-row"><span>9288 Diamonds</span> <span class="font-bold">496,000 ks</span></div>
-    </div>
+          <div class="glass-card">
+               <div class="section-tag bg-indigo-600">Dia 2ဆ Price</div>
+               <div class="price-row"><span>💎 50 (+50)</span> <span class="font-bold text-indigo-400 ks-tag">3,500 ks</span></div>
+               <div class="price-row"><span>💎 150 (+150)</span> <span class="font-bold text-indigo-400 ks-tag">10,000 ks</span></div>
+               <div class="price-row"><span>💎 250 (+250)</span> <span class="font-bold text-indigo-400 ks-tag">17,000 ks</span></div>
+               <div class="price-row"><span>💎 500 (+500)</span> <span class="font-bold text-indigo-400 ks-tag">33,000 ks</span></div>
+          </div>
 
-    <h2 class="header-title" style="border-color: #f3d321; color: #f3d321;">PUBG MOBILE</h2>
-    <div class="glass-card">
-        <div class="section-tag bg-yellow-600">UC Prices</div>
-        <div class="price-row"><span>60 UC</span> <span class="text-yellow-500 font-bold">4,200 ks</span></div>
-        <div class="price-row"><span>325 UC</span> <span class="text-yellow-500 font-bold">21,000 ks</span></div>
-        <div class="price-row"><span>660 UC</span> <span class="text-yellow-500 font-bold">41,000 ks</span></div>
-        <div class="price-row"><span>1800 UC</span> <span class="text-yellow-500 font-bold">100,000 ks</span></div>
-        <div class="price-row"><span>8100 UC</span> <span class="text-yellow-500 font-bold">386,000 ks</span></div>
-    </div>
+          <div class="glass-card">
+               <div class="section-tag bg-slate-700">Diamond စျေးများ</div>
+               <div class="price-row"><span>💎 11 Diamonds</span> <span class="font-bold ks-tag">950 ks</span></div>
+               <div class="price-row"><span>💎 22 Diamonds</span> <span class="font-bold ks-tag">1,900 ks</span></div>
+               <div class="price-row"><span>💎 56 Diamonds</span> <span class="font-bold ks-tag">4,300 ks</span></div>
+               <div class="price-row"><span>💎 86 Diamonds</span> <span class="font-bold ks-tag">5,300 ks</span></div>
+               <div class="price-row"><span>💎 112 Diamonds</span> <span class="font-bold ks-tag">10,000 ks</span></div>
+               <div class="price-row"><span>💎 172 Diamonds</span> <span class="font-bold ks-tag">11,700 ks</span></div>
+               <div class="price-row"><span>💎 257 Diamonds</span> <span class="font-bold ks-tag">15,900 ks</span></div>
+               <div class="price-row"><span>💎 343 Diamonds</span> <span class="font-bold ks-tag">22,000 ks</span></div>
+               <div class="price-row"><span>💎 429 Diamonds</span> <span class="font-bold ks-tag">25,000 ks</span></div>
+               <div class="price-row"><span>💎 514 Diamonds</span> <span class="font-bold ks-tag">31,000 ks</span></div>
+               <div class="price-row"><span>💎 600 Diamonds</span> <span class="font-bold ks-tag">34,800 ks</span></div>
+               <div class="price-row"><span>💎 706 Diamonds</span> <span class="font-bold ks-tag">40,000 ks</span></div>
+               <div class="price-row"><span>💎 878 Diamonds</span> <span class="font-bold ks-tag">49,500 ks</span></div>
+               <div class="price-row"><span>💎 1049 Diamonds</span> <span class="font-bold ks-tag">60,000 ks</span></div>
+               <div class="price-row"><span>💎 2195 Diamonds</span> <span class="font-bold ks-tag">126,000 ks</span></div>
+               <div class="price-row"><span>💎 9288 Diamonds</span> <span class="font-bold ks-tag">496,000 ks</span></div>
+          </div>
+     </div>
 
-    <div class="glass-card">
-        <div class="section-tag bg-orange-600">Pass & Prime</div>
-        <div class="price-row"><span>Prime Normal (1 Month)</span> <span class="font-bold">4,500 ks</span></div>
-        <div class="price-row"><span>Prime Plus (1 Month)</span> <span class="font-bold">40,000 ks</span></div>
-        <div class="price-row"><span>Elite Pass lv50</span> <span class="font-bold">25,000 ks</span></div>
-        <div class="price-row"><span>Elite Pass lv100</span> <span class="font-bold">50,000 ks</span></div>
-        <div class="price-row"><span>Elite Pass Plus lv100</span> <span class="font-bold">115,000 ks</span></div>
-    </div>
+     <div data-aos="fade-up">
+          <h2 class="header-title" style="border-color: #f3d321; color: #f3d321;">PUBG MOBILE</h2>
+          <div class="glass-card">
+               <div class="section-tag bg-yellow-600 text-black">UC TOP-UP</div>
+               <div class="price-row"><span>💸 60 UC</span> <span class="text-yellow-500 font-bold ks-tag">4,200 ks</span></div>
+               <div class="price-row"><span>💸 325 UC</span> <span class="text-yellow-500 font-bold ks-tag">21,000 ks</span></div>
+               <div class="price-row"><span>💸 660 UC</span> <span class="text-yellow-500 font-bold ks-tag">41,000 ks</span></div>
+               <div class="price-row"><span>💸 1320 UC</span> <span class="text-yellow-500 font-bold ks-tag">82,000 ks</span></div>
+               <div class="price-row"><span>💸 1800 UC</span> <span class="text-yellow-500 font-bold ks-tag">100,000 ks</span></div>
+               <div class="price-row"><span>💸 8100 UC</span> <span class="text-yellow-500 font-bold ks-tag">386,000 ks</span></div>
+          </div>
 
-    <h2 class="header-title" style="border-color: #ff5a5f; color: #ff5a5f;">HEARTOPIA</h2>
-    <div class="glass-card">
-        <div class="price-row"><span>20 Heart</span> <span class="text-red-400 font-bold">2,500 ks</span></div>
-        <div class="price-row"><span>320 Heart</span> <span class="text-red-400 font-bold">25,000 ks</span></div>
-        <div class="price-row"><span>1370 Heart</span> <span class="text-red-400 font-bold">100,000 ks</span></div>
-        <div class="price-row"><span>7050 Heart</span> <span class="text-red-400 font-bold">500,000 ks</span></div>
-        <div class="price-row"><span>Junior Membership</span> <span class="font-bold">3,500 ks</span></div>
-        <div class="price-row"><span>Formal Membership</span> <span class="font-bold">16,000 ks</span></div>
-    </div>
+          <div class="glass-card">
+               <div class="section-tag bg-orange-600">Pass & Prime</div>
+               <div class="price-row"><span>🤩 Prime Normal (1M)</span> <span class="font-bold ks-tag">4,500 ks</span></div>
+               <div class="price-row"><span>🤩 Prime Plus (1M)</span> <span class="font-bold ks-tag">40,000 ks</span></div>
+               <div class="price-row"><span>🤩 Elite Pass lv50</span> <span class="font-bold ks-tag">25,000 ks</span></div>
+               <div class="price-row"><span>🤩 Elite Pass lv100</span> <span class="font-bold ks-tag">50,000 ks</span></div>
+               <div class="price-row"><span>🤩 Elite Pass Plus lv100</span> <span class="font-bold ks-tag">115,000 ks</span></div>
+          </div>
+     </div>
 
-    <h2 class="header-title" style="border-color: #3fb950; color: #3fb950;">🎓 CLASSES AVAILABLE</h2>
-    
-    <div class="glass-card p-5">
-        <p class="font-bold text-emerald-400 text-lg mb-3">💰 5,000ks Classes</p>
-        <div class="space-y-1">
-            <div class="bullet-item"><i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i> Premium Package တွေ ရောင်းနည်း</div>
-            <div class="bullet-item"><i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i> Dia, UC, etc... ရောင်းနည်း</div>
-            <div class="bullet-item"><i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i> Design & Logo ဆွဲနည်း</div>
-        </div>
-        <p class="text-[10px] text-gray-500 mt-4 italic font-bold">(ကြိုက်တာတစ်ခုတက် 5,000ks ပါ)</p>
-    </div>
+     <div data-aos="fade-up">
+          <h2 class="header-title" style="border-color: #ff5a5f; color: #ff5a5f;">HEARTOPIA</h2>
+          <div class="glass-card border-red-500/20">
+               <div class="price-row"><span>💖 20 Heart</span> <span class="text-red-400 font-bold ks-tag">2,500 ks</span></div>
+               <div class="price-row"><span>💖 320 Heart</span> <span class="text-red-400 font-bold ks-tag">25,000 ks</span></div>
+               <div class="price-row"><span>💖 1370 Heart</span> <span class="text-red-400 font-bold ks-tag">100,000 ks</span></div>
+               <div class="price-row"><span>💖 7050 Heart</span> <span class="text-red-400 font-bold ks-tag">500,000 ks</span></div>
+               <div class="price-row"><span>🎖️ Junior Membership</span> <span class="font-bold ks-tag">3,500 ks</span></div>
+               <div class="price-row"><span>🎖️ Formal Membership</span> <span class="font-bold ks-tag">16,000 ks</span></div>
+          </div>
+     </div>
 
-    <div class="glass-card p-5">
-        <p class="font-bold text-purple-400 text-lg mb-3">💰 15,000ks Classes</p>
-        <div class="space-y-1">
-            <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> AI Movie Recap Class</div>
-            <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> Like | View | Follower ထည့်နည်း</div>
-            <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> TikTok အကောင့် Hack နည်း</div>
-            <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> Telegram အကောင့် Hack နည်း</div>
-        </div>
-        <p class="text-[10px] text-gray-500 mt-4 italic font-bold">(ကြိုက်တာတစ်ခုတက် 15,000ks ပါ)</p>
-    </div>
+     <div data-aos="fade-up">
+          <h2 class="header-title" style="border-color: #3fb950; color: #3fb950;">🎓 CLASSES AVAILABLE</h2>
 
-    <h2 class="header-title" style="border-color: #ff0050; color: #ff0050;">TIKTOK SERVICE</h2>
-    <div class="glass-card p-5">
-        <p class="font-bold text-pink-500 text-lg mb-2">Japan Region Tiktok New Account</p>
-        <div class="flex justify-between items-center py-2 border-b border-white/5">
-            <span>တစ်ကောင့်</span>
-            <span class="font-bold text-xl">5,000 ks</span>
-        </div>
-        <p class="text-[12px] text-gray-400 mt-3 italic"><i class="fa-solid fa-info-circle mr-1"></i> လိုအပ်ချက်: Gmail အလွတ်အသစ်လိုသည်</p>
-    </div>
+          <div class="glass-card p-6 border-emerald-500/20">
+               <p class="font-black text-emerald-400 text-xl mb-4">💰 5,000ks Classes</p>
+               <div class="space-y-1">
+                    <div class="bullet-item"><i class="fa-solid fa-square-check text-emerald-500 mt-1"></i> Premium Package တွေ ရောင်းနည်း</div>
+                    <div class="bullet-item"><i class="fa-solid fa-square-check text-emerald-500 mt-1"></i> Dia, UC, etc... ရောင်းနည်း</div>
+                    <div class="bullet-item"><i class="fa-solid fa-square-check text-emerald-500 mt-1"></i> Design & Logo ဆွဲနည်း</div>
+               </div>
+               <p class="text-[11px] text-gray-500 mt-4 italic font-bold">(ကြိုက်တာတစ်ခုတက် 5,000ks ပါ)</p>
+          </div>
 
-    <div class="fixed bottom-6 left-0 right-0 px-6 z-50">
-        <a href="https://t.me/m/ijZdnSvkNDU1" target="_blank" class="flex items-center justify-center w-full bg-[#229ED9] text-white py-4 rounded-2xl font-black text-sm shadow-2xl">
-            <i class="fa-brands fa-telegram mr-3 text-xl"></i> CONTACT ON TELEGRAM
-        </a>
-    </div>
+          <div class="glass-card p-6 border-purple-500/20">
+               <p class="font-black text-purple-400 text-xl mb-4">💰 15,000ks Classes</p>
+               <div class="space-y-1">
+                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> AI Movie Recap Class</div>
+                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> Like | View | Follower ထည့်နည်း</div>
+                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> TikTok အကောင့် Hack နည်း</div>
+                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> Telegram အကောင့် Hack နည်း</div>
+               </div>
+               <p class="text-[11px] text-gray-500 mt-4 italic font-bold">(ကြိုက်တာတစ်ခုတက် 15,000ks ပါ)</p>
+          </div>
+     </div>
 
+     <div data-aos="fade-up">
+          <h2 class="header-title" style="border-color: #ff0050; color: #ff0050;">TIKTOK SERVICE</h2>
+          <div class="glass-card p-6 border-pink-500/20">
+               <p class="font-black text-white text-xl">Japan Region TikTok New Account</p>
+               <div class="flex justify-between items-center py-4 my-4 border-y border-white/5">
+                    <span class="text-gray-400">တစ်ကောင့်စျေးနှုန်း</span>
+                    <span class="font-black text-2xl text-pink-500">5,000 ks</span>
+               </div>
+               <div class="bg-pink-500/5 p-3 rounded-xl border border-pink-500/10">
+                    <p class="text-xs text-gray-400 leading-relaxed"><span class="text-white font-bold">လိုအပ်ချက်:</span> Gmail အလွတ်အသစ်တစ်ခု ပေးရန်လိုအပ်ပါသည်။</p>
+               </div>
+          </div>
+     </div>
+
+     <div class="py-10 text-center text-gray-600 text-[10px] uppercase tracking-[0.5em]">
+          © 2026 Decentralized Shop
+     </div>
+
+     <div class="fixed bottom-8 left-0 right-0 px-6 z-50">
+          <a href="https://t.me/m/ijZdnSvkNDU1" target="_blank"
+               class="tg-btn flex items-center justify-center w-full bg-[#229ED9] text-white py-4 rounded-2xl font-black text-sm shadow-2xl hover:scale-[1.02] active:scale-95 transition-transform border border-white/20">
+               <i class="fa-brands fa-telegram mr-3 text-xl"></i> CONTACT ON TELEGRAM
+          </a>
+     </div>
+
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script>
+          AOS.init({ duration: 800, offset: 100, once: true });
+     </script>
 </body>
+
 </html>
