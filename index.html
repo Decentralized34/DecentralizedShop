@@ -2,277 +2,310 @@
 <html lang="my">
 
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Decentralized Shop | Premium Digital Services</title>
-     <script src="https://cdn.tailwindcss.com"></script>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-     <style>
-          @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Inter:wght@400;700;900&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Shop | Premium Digital Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
-          :root {
-               --bg-dark: #010409;
-               --card-bg: #0d1117;
-               --border-color: #30363d;
-               --accent-blue: #3b82f6;
-          }
+        :root {
+            --bg-dark: #050505;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+            --card-bg: rgba(17, 25, 40, 0.75);
+        }
 
-          body {
-               font-family: 'Padauk', 'Inter', sans-serif;
-               background: radial-gradient(circle at top right, #161b22, #010409);
-               color: #f0f6fc;
-               overflow-x: hidden;
-          }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
 
-          .glass-card {
-               background: rgba(13, 17, 23, 0.8);
-               backdrop-filter: blur(10px);
-               border: 1px solid var(--border-color);
-               border-radius: 1.5rem;
-               margin-bottom: 1.5rem;
-               overflow: hidden;
-               transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          }
+        /* Animated Mesh Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-          .glass-card:hover {
-               transform: translateY(-5px);
-               border-color: #484f58;
-               box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          }
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
 
-          .price-row {
-               display: flex;
-               justify-content: space-between;
-               align-items: center;
-               padding: 12px 20px;
-               border-bottom: 1px solid rgba(48, 54, 61, 0.5);
-               transition: background 0.2s;
-          }
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
 
-          .price-row:hover {
-               background: rgba(59, 130, 246, 0.05);
-          }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s;
+        }
 
-          .price-row:last-child {
-               border-bottom: none;
-          }
+        .price-row:hover {
+            background: rgba(255, 255, 255, 0.03);
+            padding-left: 28px;
+        }
 
-          .section-tag {
-               display: inline-block;
-               padding: 6px 16px;
-               border-radius: 0 0 12px 0;
-               font-size: 11px;
-               font-weight: 800;
-               text-transform: uppercase;
-               letter-spacing: 1px;
-          }
+        .ks-tag {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
 
-          .header-title {
-               position: relative;
-               padding-left: 20px;
-               margin: 40px 0 20px 0;
-               font-weight: 900;
-               font-size: 1.25rem;
-               display: flex;
-               align-items: center;
-          }
+        .header-title {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+        }
 
-          .header-title::before {
-               content: '';
-               position: absolute;
-               left: 0;
-               height: 100%;
-               width: 4px;
-               border-radius: 10px;
-               background: currentColor;
-               box-shadow: 0 0 15px currentColor;
-          }
+        .header-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, currentColor, transparent);
+            opacity: 0.3;
+        }
 
-          .bullet-item {
-               display: flex;
-               align-items: flex-start;
-               gap: 12px;
-               font-size: 14px;
-               color: #c9d1d9;
-               padding: 8px 0;
-          }
+        /* Glitch Animation */
+        .glitch {
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                         0.025em 0.04em 0 #fffc00;
+            animation: glitch 725ms infinite;
+        }
 
-          @keyframes float {
-               0% { transform: translateY(0px); }
-               50% { transform: translateY(-10px); }
-               100% { transform: translateY(0px); }
-          }
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+            15% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+            16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            50% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+            99% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+            100% { text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff, -0.04em -0.025em 0 #fffc00; }
+        }
 
-          .float-logo {
-               animation: float 3s ease-in-out infinite;
-          }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
 
-          @keyframes pulse-blue {
-               0% { box-shadow: 0 0 0 0 rgba(34, 158, 217, 0.7); }
-               70% { box-shadow: 0 0 0 15px rgba(34, 158, 217, 0); }
-               100% { box-shadow: 0 0 0 0 rgba(34, 158, 217, 0); }
-          }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
 
-          .tg-btn {
-               animation: pulse-blue 2s infinite;
-          }
+        .tg-btn {
+            background: linear-gradient(135deg, #229ED9 0%, #1278ab 100%);
+            box-shadow: 0 10px 25px -5px rgba(34, 158, 217, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-          .ks-tag {
-               font-family: 'Inter', sans-serif;
-               background: rgba(255, 255, 255, 0.05);
-               padding: 2px 8px;
-               border-radius: 6px;
-          }
-     </style>
+        .tg-btn:hover {
+            box-shadow: 0 15px 30px -5px rgba(34, 158, 217, 0.6);
+            transform: translateY(-4px) scale(1.02);
+        }
+    </style>
 </head>
 
-<body class="pb-32 px-4 md:max-w-2xl md:mx-auto">
+<body class="pb-36 px-5 md:max-w-3xl md:mx-auto">
 
-     <header class="text-center py-12" data-aos="fade-down">
-          <div class="relative inline-block">
-               <img src="https://i.ibb.co/b52ctWXK/image.jpg"
-                    class="w-28 h-28 rounded-full mx-auto mb-6 border-4 border-blue-500/30 shadow-2xl object-cover float-logo"
-                    alt="Decentralized Shop Logo">
-               <div class="absolute -bottom-2 -right-2 bg-blue-500 rounded-full p-2 shadow-lg">
-                    <i class="fa-solid fa-check text-white text-xs"></i>
-               </div>
-          </div>
-          <h1 class="text-4xl font-black italic tracking-tighter">DECENTRALIZED <span class="text-blue-500">SHOP</span>
-          </h1>
-          <div class="flex items-center justify-center gap-2 mt-3">
-               <span class="h-[1px] w-8 bg-gray-700"></span>
-               <p class="text-gray-500 text-[10px] tracking-[0.4em] font-bold uppercase">Premium Digital Services</p>
-               <span class="h-[1px] w-8 bg-gray-700"></span>
-          </div>
-     </header>
+    <header class="relative py-16 text-center overflow-hidden" data-aos="zoom-out">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full"></div>
+        
+        <div class="relative z-10">
+            <div class="relative inline-block mb-8">
+                <img src="./img/ic.jpg" class="w-32 h-32 rounded-3xl mx-auto shadow-2xl floating object-cover border-2 border-white/10" alt="Logo">
+                <div class="absolute -bottom-3 -right-3 bg-blue-500 w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg border-4 border-[#050505]">
+                    <i class="fa-solid fa-bolt text-white"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl font-extrabold tracking-tighter mb-2 italic">
+                DECENTRALIZED <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">SHOP</span>
+            </h1>
+            <p class="text-gray-400 font-medium tracking-[0.3em] text-xs uppercase opacity-80">EST. 2026 • Premium Digital Outlet</p>
+        </div>
+    </header>
 
-     <div data-aos="fade-up">
-          <h2 class="header-title" style="color: #3b82f6;">MOBILE LEGENDS (MLBB)</h2>
-          
-          <div class="glass-card">
-               <div class="section-tag bg-blue-600">Passes & Special</div>
-               <div class="price-row"><span>💎 Weekly Diamond Pass</span> <span class="font-bold text-blue-400 ks-tag">6,000 ks</span></div>
-               <div class="price-row"><span>🤩 Twilight Pass</span> <span class="font-bold text-blue-400 ks-tag">38,000 ks</span></div>
-          </div>
+    <div data-aos="fade-up" class="mb-12">
+        <h2 class="header-title text-blue-400"><i class="fa-solid fa-gamepad"></i> Mobile Legends</h2>
+        
+        <div class="grid grid-cols-1 gap-4">
+            <div class="glass-card">
+                <div class="px-6 py-3 bg-blue-500/10 text-blue-400 text-[10px] font-black uppercase tracking-widest border-b border-blue-500/20">Special Passes</div>
+                <div class="price-row"><span>Weekly Diamond Pass</span> <span class="ks-tag text-blue-400">6,000 ks</span></div>
+                <div class="price-row"><span>Twilight Pass</span> <span class="ks-tag text-blue-400">38,000 ks</span></div>
+            </div>
 
-          <div class="glass-card">
-               <div class="section-tag bg-indigo-600">Dia 2ဆ Price</div>
-               <div class="price-row"><span>💎 50 (+50)</span> <span class="font-bold text-indigo-400 ks-tag">3,500 ks</span></div>
-               <div class="price-row"><span>💎 150 (+150)</span> <span class="font-bold text-indigo-400 ks-tag">10,000 ks</span></div>
-               <div class="price-row"><span>💎 250 (+250)</span> <span class="font-bold text-indigo-400 ks-tag">17,000 ks</span></div>
-               <div class="price-row"><span>💎 500 (+500)</span> <span class="font-bold text-indigo-400 ks-tag">33,000 ks</span></div>
-          </div>
+            <div class="glass-card">
+                <div class="px-6 py-3 bg-indigo-500/10 text-indigo-400 text-[10px] font-black uppercase tracking-widest border-b border-indigo-500/20">2X Diamond Bonus</div>
+                <div class="price-row"><span>50 (+50 Bonus)</span> <span class="ks-tag text-indigo-300">3,500 ks</span></div>
+                <div class="price-row"><span>150 (+150 Bonus)</span> <span class="ks-tag text-indigo-300">10,000 ks</span></div>
+                <div class="price-row"><span>250 (+250 Bonus)</span> <span class="ks-tag text-indigo-300">17,000 ks</span></div>
+                <div class="price-row"><span>500 (+500 Bonus)</span> <span class="ks-tag text-indigo-300">33,000 ks</span></div>
+            </div>
 
-          <div class="glass-card">
-               <div class="section-tag bg-slate-700">Diamond စျေးများ</div>
-               <div class="price-row"><span>💎 11 Diamonds</span> <span class="font-bold ks-tag">950 ks</span></div>
-               <div class="price-row"><span>💎 22 Diamonds</span> <span class="font-bold ks-tag">1,900 ks</span></div>
-               <div class="price-row"><span>💎 56 Diamonds</span> <span class="font-bold ks-tag">4,300 ks</span></div>
-               <div class="price-row"><span>💎 86 Diamonds</span> <span class="font-bold ks-tag">5,300 ks</span></div>
-               <div class="price-row"><span>💎 112 Diamonds</span> <span class="font-bold ks-tag">10,000 ks</span></div>
-               <div class="price-row"><span>💎 172 Diamonds</span> <span class="font-bold ks-tag">11,700 ks</span></div>
-               <div class="price-row"><span>💎 257 Diamonds</span> <span class="font-bold ks-tag">15,900 ks</span></div>
-               <div class="price-row"><span>💎 343 Diamonds</span> <span class="font-bold ks-tag">22,000 ks</span></div>
-               <div class="price-row"><span>💎 429 Diamonds</span> <span class="font-bold ks-tag">25,000 ks</span></div>
-               <div class="price-row"><span>💎 514 Diamonds</span> <span class="font-bold ks-tag">31,000 ks</span></div>
-               <div class="price-row"><span>💎 600 Diamonds</span> <span class="font-bold ks-tag">34,800 ks</span></div>
-               <div class="price-row"><span>💎 706 Diamonds</span> <span class="font-bold ks-tag">40,000 ks</span></div>
-               <div class="price-row"><span>💎 878 Diamonds</span> <span class="font-bold ks-tag">49,500 ks</span></div>
-               <div class="price-row"><span>💎 1049 Diamonds</span> <span class="font-bold ks-tag">60,000 ks</span></div>
-               <div class="price-row"><span>💎 2195 Diamonds</span> <span class="font-bold ks-tag">126,000 ks</span></div>
-               <div class="price-row"><span>💎 9288 Diamonds</span> <span class="font-bold ks-tag">496,000 ks</span></div>
-          </div>
-     </div>
+            <div class="glass-card">
+                <div class="px-6 py-3 bg-white/5 text-gray-400 text-[10px] font-black uppercase tracking-widest border-b border-white/10 text-center">Standard Top-up</div>
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="price-row border-r border-white/5"><span>86 Diamonds</span> <span class="ks-tag">5,300 ks</span></div>
+                    <div class="price-row"><span>172 Diamonds</span> <span class="ks-tag">11,700 ks</span></div>
+                    <div class="price-row border-r border-white/5"><span>257 Diamonds</span> <span class="ks-tag">15,900 ks</span></div>
+                    <div class="price-row"><span>343 Diamonds</span> <span class="ks-tag">22,000 ks</span></div>
+                    <div class="price-row border-r border-white/5"><span>429 Diamonds</span> <span class="ks-tag">25,000 ks</span></div>
+                    <div class="price-row"><span>514 Diamonds</span> <span class="ks-tag">31,000 ks</span></div>
+                    <div class="price-row border-r border-white/5"><span>706 Diamonds</span> <span class="ks-tag">40,000 ks</span></div>
+                    <div class="price-row"><span>1049 Diamonds</span> <span class="ks-tag">60,000 ks</span></div>
+                    <div class="price-row border-r border-white/5"><span>2195 Diamonds</span> <span class="ks-tag">126,000 ks</span></div>
+                    <div class="price-row"><span>9288 Diamonds</span> <span class="ks-tag">496,000 ks</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-     <div data-aos="fade-up">
-          <h2 class="header-title" style="border-color: #f3d321; color: #f3d321;">PUBG MOBILE</h2>
-          <div class="glass-card">
-               <div class="section-tag bg-yellow-600 text-black">UC TOP-UP</div>
-               <div class="price-row"><span>💸 60 UC</span> <span class="text-yellow-500 font-bold ks-tag">4,200 ks</span></div>
-               <div class="price-row"><span>💸 325 UC</span> <span class="text-yellow-500 font-bold ks-tag">21,000 ks</span></div>
-               <div class="price-row"><span>💸 660 UC</span> <span class="text-yellow-500 font-bold ks-tag">41,000 ks</span></div>
-               <div class="price-row"><span>💸 1320 UC</span> <span class="text-yellow-500 font-bold ks-tag">82,000 ks</span></div>
-               <div class="price-row"><span>💸 1800 UC</span> <span class="text-yellow-500 font-bold ks-tag">100,000 ks</span></div>
-               <div class="price-row"><span>💸 8100 UC</span> <span class="text-yellow-500 font-bold ks-tag">386,000 ks</span></div>
-          </div>
+    <div data-aos="fade-up" class="mb-12">
+        <h2 class="header-title text-yellow-500"><i class="fa-solid fa-gun"></i> PUBG Mobile</h2>
+        <div class="glass-card mb-4 border-yellow-500/20">
+            <div class="price-row"><span>60 UC</span> <span class="ks-tag text-yellow-500 border-yellow-500/30">4,200 ks</span></div>
+            <div class="price-row"><span>325 UC</span> <span class="ks-tag text-yellow-500 border-yellow-500/30">21,000 ks</span></div>
+            <div class="price-row"><span>660 UC</span> <span class="ks-tag text-yellow-500 border-yellow-500/30">41,000 ks</span></div>
+            <div class="price-row"><span>1800 UC</span> <span class="ks-tag text-yellow-500 border-yellow-500/30">100,000 ks</span></div>
+            <div class="price-row"><span>8100 UC</span> <span class="ks-tag text-yellow-500 border-yellow-500/30">386,000 ks</span></div>
+        </div>
+        <div class="glass-card border-orange-500/20">
+            <div class="price-row"><span>Prime Normal</span> <span class="ks-tag text-orange-400">4,500 ks</span></div>
+            <div class="price-row"><span>Prime Plus</span> <span class="ks-tag text-orange-400">40,000 ks</span></div>
+            <div class="price-row"><span>Elite Pass lv50</span> <span class="ks-tag text-orange-400">25,000 ks</span></div>
+            <div class="price-row"><span>Elite Pass lv100</span> <span class="ks-tag text-orange-400">50,000 ks</span></div>
+            <div class="price-row"><span>Elite Pass Plus</span> <span class="ks-tag text-orange-400">115,000 ks</span></div>
+        </div>
+    </div>
 
-          <div class="glass-card">
-               <div class="section-tag bg-orange-600">Pass & Prime</div>
-               <div class="price-row"><span>🤩 Prime Normal (1M)</span> <span class="font-bold ks-tag">4,500 ks</span></div>
-               <div class="price-row"><span>🤩 Prime Plus (1M)</span> <span class="font-bold ks-tag">40,000 ks</span></div>
-               <div class="price-row"><span>🤩 Elite Pass lv50</span> <span class="font-bold ks-tag">25,000 ks</span></div>
-               <div class="price-row"><span>🤩 Elite Pass lv100</span> <span class="font-bold ks-tag">50,000 ks</span></div>
-               <div class="price-row"><span>🤩 Elite Pass Plus lv100</span> <span class="font-bold ks-tag">115,000 ks</span></div>
-          </div>
-     </div>
+    <div data-aos="fade-up" class="mb-12">
+        <h2 class="header-title text-pink-500"><i class="fa-solid fa-heart"></i> Heartopia</h2>
+        <div class="glass-card border-pink-500/20">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="price-row border-r border-white/5"><span>20 Heart</span> <span class="ks-tag text-pink-400">2,500 ks</span></div>
+                <div class="price-row"><span>320 Heart</span> <span class="ks-tag text-pink-400">25,000 ks</span></div>
+                <div class="price-row border-r border-white/5"><span>1370 Heart</span> <span class="ks-tag text-pink-400">100,000 ks</span></div>
+                <div class="price-row"><span>7050 Heart</span> <span class="ks-tag text-pink-400">500,000 ks</span></div>
+                <div class="price-row border-r border-white/5"><span>Junior Member</span> <span class="ks-tag">3,500 ks</span></div>
+                <div class="price-row"><span>Formal Member</span> <span class="ks-tag">16,000 ks</span></div>
+            </div>
+        </div>
+    </div>
 
-     <div data-aos="fade-up">
-          <h2 class="header-title" style="border-color: #ff5a5f; color: #ff5a5f;">HEARTOPIA</h2>
-          <div class="glass-card border-red-500/20">
-               <div class="price-row"><span>💖 20 Heart</span> <span class="text-red-400 font-bold ks-tag">2,500 ks</span></div>
-               <div class="price-row"><span>💖 320 Heart</span> <span class="text-red-400 font-bold ks-tag">25,000 ks</span></div>
-               <div class="price-row"><span>💖 1370 Heart</span> <span class="text-red-400 font-bold ks-tag">100,000 ks</span></div>
-               <div class="price-row"><span>💖 7050 Heart</span> <span class="text-red-400 font-bold ks-tag">500,000 ks</span></div>
-               <div class="price-row"><span>🎖️ Junior Membership</span> <span class="font-bold ks-tag">3,500 ks</span></div>
-               <div class="price-row"><span>🎖️ Formal Membership</span> <span class="font-bold ks-tag">16,000 ks</span></div>
-          </div>
-     </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12" data-aos="fade-up">
+        <div class="glass-card p-8 border-emerald-500/20 bg-emerald-500/[0.02]">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-500 shadow-lg shadow-emerald-500/20">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl text-emerald-400">Entry Class</h3>
+                    <p class="text-[10px] text-emerald-500/60 font-black tracking-widest uppercase">Start your business</p>
+                </div>
+            </div>
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-emerald-500"></i> Premium Package ရောင်းနည်း</li>
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-emerald-500"></i> Dia, UC, etc... ရောင်းနည်း</li>
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-check text-emerald-500"></i> Design & Logo ဆွဲနည်း</li>
+            </ul>
+            <div class="text-center py-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                <span class="text-2xl font-black text-emerald-400">5,000</span> <span class="text-xs font-bold text-emerald-500">ks</span>
+            </div>
+        </div>
 
-     <div data-aos="fade-up">
-          <h2 class="header-title" style="border-color: #3fb950; color: #3fb950;">🎓 CLASSES AVAILABLE</h2>
+        <div class="glass-card p-8 border-purple-500/20 bg-purple-500/[0.02]">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-500 shadow-lg shadow-purple-500/20">
+                    <i class="fa-solid fa-crown text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl text-purple-400">Pro Class</h3>
+                    <p class="text-[10px] text-purple-500/60 font-black tracking-widest uppercase">Master the skills</p>
+                </div>
+            </div>
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-star text-purple-500"></i> AI Movie Recap Class</li>
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-star text-purple-500"></i> Social Media Growth</li>
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-star text-purple-500"></i> TikTok Account Hack</li>
+                <li class="flex items-center gap-3 text-sm text-gray-300"><i class="fa-solid fa-star text-purple-500"></i> Telegram Account Hack</li>
+            </ul>
+            <div class="text-center py-3 bg-purple-500/10 rounded-xl border border-purple-500/20">
+                <span class="text-2xl font-black text-purple-400">15,000</span> <span class="text-xs font-bold text-purple-500">ks</span>
+            </div>
+        </div>
+    </div>
 
-          <div class="glass-card p-6 border-emerald-500/20">
-               <p class="font-black text-emerald-400 text-xl mb-4">💰 5,000ks Classes</p>
-               <div class="space-y-1">
-                    <div class="bullet-item"><i class="fa-solid fa-square-check text-emerald-500 mt-1"></i> Premium Package တွေ ရောင်းနည်း</div>
-                    <div class="bullet-item"><i class="fa-solid fa-square-check text-emerald-500 mt-1"></i> Dia, UC, etc... ရောင်းနည်း</div>
-                    <div class="bullet-item"><i class="fa-solid fa-square-check text-emerald-500 mt-1"></i> Design & Logo ဆွဲနည်း</div>
-               </div>
-               <p class="text-[11px] text-gray-500 mt-4 italic font-bold">(ကြိုက်တာတစ်ခုတက် 5,000ks ပါ)</p>
-          </div>
+    <div data-aos="fade-up" class="mb-12">
+        <div class="glass-card p-8 border-pink-500/30 overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:rotate-12 transition-transform">
+                <i class="fa-brands fa-tiktok text-8xl text-pink-500"></i>
+            </div>
+            <div class="relative z-10">
+                <h2 class="text-pink-500 font-black tracking-widest text-xs uppercase mb-2">Exclusive Service</h2>
+                <h3 class="text-3xl font-black mb-6">Japan Region TikTok</h3>
+                <div class="flex items-baseline gap-2 mb-6">
+                    <span class="text-4xl font-black text-white">5,000</span>
+                    <span class="text-pink-500 font-bold">ks / Account</span>
+                </div>
+                <div class="bg-black/40 p-4 rounded-2xl border border-white/5 flex gap-4">
+                    <i class="fa-solid fa-circle-exclamation text-pink-500 mt-1"></i>
+                    <p class="text-sm text-gray-400">လိုအပ်ချက်: Gmail အလွတ်အသစ်တစ်ခု ပေးရန်လိုအပ်ပါသည်။</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-          <div class="glass-card p-6 border-purple-500/20">
-               <p class="font-black text-purple-400 text-xl mb-4">💰 15,000ks Classes</p>
-               <div class="space-y-1">
-                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> AI Movie Recap Class</div>
-                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> Like | View | Follower ထည့်နည်း</div>
-                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> TikTok အကောင့် Hack နည်း</div>
-                    <div class="bullet-item"><i class="fa-solid fa-star text-purple-500 mt-1"></i> Telegram အကောင့် Hack နည်း</div>
-               </div>
-               <p class="text-[11px] text-gray-500 mt-4 italic font-bold">(ကြိုက်တာတစ်ခုတက် 15,000ks ပါ)</p>
-          </div>
-     </div>
+    <footer class="py-20 text-center">
+        <p class="text-[10px] text-gray-600 font-bold tracking-[0.8em] uppercase">© 2026 Decentralized Shop</p>
+    </footer>
 
-     <div data-aos="fade-up">
-          <h2 class="header-title" style="border-color: #ff0050; color: #ff0050;">TIKTOK SERVICE</h2>
-          <div class="glass-card p-6 border-pink-500/20">
-               <p class="font-black text-white text-xl">Japan Region TikTok New Account</p>
-               <div class="flex justify-between items-center py-4 my-4 border-y border-white/5">
-                    <span class="text-gray-400">တစ်ကောင့်စျေးနှုန်း</span>
-                    <span class="font-black text-2xl text-pink-500">5,000 ks</span>
-               </div>
-               <div class="bg-pink-500/5 p-3 rounded-xl border border-pink-500/10">
-                    <p class="text-xs text-gray-400 leading-relaxed"><span class="text-white font-bold">လိုအပ်ချက်:</span> Gmail အလွတ်အသစ်တစ်ခု ပေးရန်လိုအပ်ပါသည်။</p>
-               </div>
-          </div>
-     </div>
+    <div class="fixed bottom-8 left-0 right-0 px-6 z-50 md:max-w-md md:mx-auto">
+        <a href="https://t.me/m/ijZdnSvkNDU1" target="_blank"
+           class="tg-btn flex items-center justify-center w-full py-5 rounded-3xl font-black text-base shadow-2xl">
+            <i class="fa-brands fa-telegram mr-3 text-2xl"></i> CONTACT ON TELEGRAM
+        </a>
+    </div>
 
-     <div class="py-10 text-center text-gray-600 text-[10px] uppercase tracking-[0.5em]">
-          © 2026 Decentralized Shop
-     </div>
-
-     <div class="fixed bottom-8 left-0 right-0 px-6 z-50">
-          <a href="https://t.me/m/ijZdnSvkNDU1" target="_blank"
-               class="tg-btn flex items-center justify-center w-full bg-[#229ED9] text-white py-4 rounded-2xl font-black text-sm shadow-2xl hover:scale-[1.02] active:scale-95 transition-transform border border-white/20">
-               <i class="fa-brands fa-telegram mr-3 text-xl"></i> CONTACT ON TELEGRAM
-          </a>
-     </div>
-
-     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-     <script>
-          AOS.init({ duration: 800, offset: 100, once: true });
-     </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-back',
+            once: true
+        });
+    </script>
 </body>
-
 </html>
